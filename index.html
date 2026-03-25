@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CinéDB – Films & Séries</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner container">
+        <a aria-label="Accueil CinéDB" class="logo" href="index.html">
+            <i class="fa-solid fa-film"></i>
+        </a>
+        <nav aria-label="Navigation principale" class="main-nav" id="main-nav">
+            <a class="nav-link" href="#section-films">Films</a>
+            <a class="nav-link" href="#section-series">Séries</a>
+            <a class="nav-link" href="#section-tendances">Populaires</a>
+        </nav>
+        <button aria-controls="main-nav" aria-expanded="false" aria-label="Ouvrir le menu" class="burger-btn"
+                id="burger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<section aria-label="Bannière principale" class="hero">
+    <div class="hero-backdrop" id="hero-backdrop"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-body">
+        <form class="hero-search-form" id="search-form" role="search">
+            <input
+                    aria-label="Rechercher un film ou une série"
+                    autocomplete="off"
+                    class="hero-search-input"
+                    id="search-input"
+                    placeholder="Rechercher un film ou une série"
+                    type="search"
+            />
+            <button aria-label="Lancer la recherche" class="hero-search-btn" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+        <div aria-label="Filtres de recherche" class="search-filters-panel hidden" id="search-filters-panel">
+            <div class="filter-group">
+                <p class="filter-group-label">Genre</p>
+                <div aria-label="Filtres par genre" class="filter-chips" id="search-genre-chips" role="group"></div>
+            </div>
+            <div class="filter-group">
+                <p class="filter-group-label">Année</p>
+                <input class="filter-year-input" id="filter-year" max="2030" min="1900" placeholder="Ex : 2023"
+                       type="number"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main id="main-content">
+
+    <section aria-label="Résultats de recherche" class="search-results-section hidden" id="section-search-results">
+        <div class="container">
+            <h2 class="section-title">Résultats pour : <span id="search-query-label"></span></h2>
+            <div class="cards-grid" id="search-results-grid" role="list"></div>
+            <p class="no-results hidden" id="search-no-results">Aucun résultat trouvé.</p>
+        </div>
+    </section>
+
+    <section aria-labelledby="title-tendances" class="content-section" id="section-tendances">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="title-tendances">Tendances</h2>
+                <div aria-label="Filtre tendances" class="filter-tabs" role="tablist">
+                    <button aria-selected="true" class="tab-btn active" data-section="trending" data-window="day"
+                            role="tab">Aujourd'hui
+                    </button>
+                    <button aria-selected="false" class="tab-btn" data-section="trending" data-window="week" role="tab">
+                        Cette semaine
+                    </button>
+                </div>
+            </div>
+            <div class="cards-grid" id="trending-grid" role="list"></div>
+            <p class="section-error hidden" id="trending-error" role="alert">Impossible de charger les tendances.</p>
+        </div>
+    </section>
+
+    <section aria-labelledby="title-series" class="content-section" id="section-series">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="title-series">Séries TV</h2>
+                <div aria-label="Filtres séries" class="filter-tabs" id="tv-genre-filters" role="tablist">
+                    <button aria-selected="true" class="tab-btn active" data-section="tvshows"
+                            data-sort="vote_average.desc" role="tab">Mieux notées
+                    </button>
+                    <button aria-selected="false" class="tab-btn" data-section="tvshows" data-sort="popularity.desc"
+                            role="tab">Populaires
+                    </button>
+                </div>
+            </div>
+            <div class="cards-grid" id="tvshows-grid" role="list"></div>
+            <p class="section-error hidden" id="tvshows-error" role="alert">Impossible de charger les séries.</p>
+        </div>
+    </section>
+
+    <section aria-labelledby="title-films" class="content-section" id="section-films">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="title-films">Films</h2>
+                <div aria-label="Filtres films" class="filter-tabs" id="movie-genre-filters" role="tablist">
+                    <button aria-selected="true" class="tab-btn active" data-genre-id="" data-section="movies"
+                            role="tab">Populaires
+                    </button>
+                </div>
+            </div>
+            <div class="cards-grid" id="movies-grid" role="list"></div>
+            <p class="section-error hidden" id="movies-error" role="alert">Impossible de charger les films.</p>
+        </div>
+    </section>
+
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/MovieCard.js"></script>
+<script src="js/home.js"></script>
+
+</body>
+</html>
